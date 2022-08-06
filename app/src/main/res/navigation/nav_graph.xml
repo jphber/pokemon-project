@@ -6,7 +6,7 @@
     app:startDestination="@id/mainFragment">
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.jeanbernuy.pokemonapp.MainFragment"
+        android:name="com.jeanbernuy.pokemonapp.presentation.MainFragment"
         android:label="fragment_main"
         tools:layout="@layout/fragment_main" >
         <action
@@ -15,7 +15,7 @@
     </fragment>
     <fragment
         android:id="@+id/detailFragment"
-        android:name="com.jeanbernuy.pokemonapp.DetailFragment"
+        android:name="com.jeanbernuy.pokemonapp.presentation.DetailFragment"
         android:label="fragment_detail"
         tools:layout="@layout/fragment_detail" />
 </navigation>

@@ -1,30 +1,31 @@
-package com.jeanbernuy.pokemonapp
+package com.jeanbernuy.pokemonapp.presentation
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.jeanbernuy.pokemonapp.databinding.FragmentDetailBinding
+import com.jeanbernuy.pokemonapp.databinding.FragmentMainBinding
 
 /**
- * A simple [DetailFragment]
+ * A simple [MainFragment]
  *
  */
-class DetailFragment : Fragment() {
+class MainFragment : Fragment() {
 
-    private var _binding: FragmentDetailBinding? = null
+    private var _binding: FragmentMainBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentDetailBinding.inflate(inflater, container, false)
+        _binding = FragmentMainBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -36,4 +37,5 @@ class DetailFragment : Fragment() {
         super.onDestroy()
         _binding = null
     }
+
 }
