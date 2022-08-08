@@ -7,8 +7,8 @@
     <fragment
         android:id="@+id/mainFragment"
         android:name="com.jeanbernuy.pokemonapp.presentation.MainFragment"
-        android:label="fragment_main"
-        tools:layout="@layout/fragment_main" >
+        android:label="Pokemon App"
+        tools:layout="@layout/fragment_main">
         <action
             android:id="@+id/action_mainFragment_to_detailFragment"
             app:destination="@id/detailFragment" />
@@ -16,6 +16,6 @@
     <fragment
         android:id="@+id/detailFragment"
         android:name="com.jeanbernuy.pokemonapp.presentation.DetailFragment"
-        android:label="fragment_detail"
+        android:label="Descriptions"
         tools:layout="@layout/fragment_detail" />
 </navigation>

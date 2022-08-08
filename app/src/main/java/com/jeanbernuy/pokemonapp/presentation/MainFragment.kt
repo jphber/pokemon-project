@@ -8,10 +8,15 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
+import com.jeanbernuy.pokemonapp.R
 import com.jeanbernuy.pokemonapp.core.Resource
+import com.jeanbernuy.pokemonapp.data.model.Pokemon
 import com.jeanbernuy.pokemonapp.data.remote.PokemonDataSource
 import com.jeanbernuy.pokemonapp.data.repository.PokemonDataRepository
 import com.jeanbernuy.pokemonapp.databinding.FragmentMainBinding
+import com.jeanbernuy.pokemonapp.formatPokemonName
 import com.jeanbernuy.pokemonapp.presentation.viewmodels.PokemonViewModel
 import com.jeanbernuy.pokemonapp.presentation.viewmodels.VMFactory
 
@@ -50,16 +55,27 @@ class MainFragment : Fragment() {
         viewModel.loadPokemon.observe(viewLifecycleOwner, Observer { result ->
             when (result) {
                 is Resource.Loading -> {
-                    Toast.makeText(requireContext(), "Loading.....", Toast.LENGTH_LONG).show()
+                    binding.progressBar.visibility = View.VISIBLE
                 }
                 is Resource.Success -> {
-                    Toast.makeText(requireContext(), "${result.data}", Toast.LENGTH_LONG).show()
+                    setupViews(result.data)
+                    binding.progressBar.visibility = View.GONE
                 }
                 is Resource.Failure -> {
+                    binding.progressBar.visibility = View.GONE
                     Toast.makeText(requireContext(), "Error on server...", Toast.LENGTH_LONG).show()
                 }
             }
         })
+    }
+
+    private fun setupViews(pokemon: Pokemon) {
+        binding.pokemonName.text = formatPokemonName(pokemon.name)
+        Glide.with(requireContext()).load(pokemon.sprites?.other?.home?.frontDefault)
+            .into(binding.pokemonImage)
+        binding.moreInfo.setOnClickListener {
+            findNavController().navigate(R.id.action_mainFragment_to_detailFragment)
+        }
     }
 
     override fun onDestroy() {

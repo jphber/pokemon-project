@@ -1,14 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background"
+    android:orientation="vertical"
     tools:context=".presentation.MainFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
+        android:id="@+id/progressBar"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:text="@string/hello_blank_fragment"
+        android:gravity="center"
+        android:visibility="visible">
 
-</FrameLayout>
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/pokemonImage"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:src="@drawable/ic_launcher_background"
+            app:civ_circle_background_color="@color/white"
+            app:civ_border_color="@color/design_default_color_background"
+            app:civ_border_width="3dp" />
+
+        <TextView
+            android:id="@+id/pokemonName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center|center_horizontal"
+            android:textColor="@color/white"
+            android:textSize="30sp"
+            android:textStyle="italic"
+            tools:text="Pikachu" />
+
+        <Button
+            android:id="@+id/moreInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:shadowRadius="@integer/material_motion_duration_long_1"
+            android:text="@string/btn_check_it_out"
+            android:textColor="@color/white" />
+    </LinearLayout>
+</LinearLayout>
