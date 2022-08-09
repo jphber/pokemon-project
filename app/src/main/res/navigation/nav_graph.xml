@@ -17,5 +17,9 @@
         android:id="@+id/detailFragment"
         android:name="com.jeanbernuy.pokemonapp.presentation.DetailFragment"
         android:label="Descriptions"
-        tools:layout="@layout/fragment_detail" />
+        tools:layout="@layout/fragment_detail" >
+        <argument
+            android:name="pokemon"
+            app:argType="com.jeanbernuy.pokemonapp.data.model.Pokemon" />
+    </fragment>
 </navigation>

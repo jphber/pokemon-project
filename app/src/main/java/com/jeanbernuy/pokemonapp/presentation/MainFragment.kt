@@ -10,7 +10,6 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
-import com.jeanbernuy.pokemonapp.R
 import com.jeanbernuy.pokemonapp.core.Resource
 import com.jeanbernuy.pokemonapp.data.model.Pokemon
 import com.jeanbernuy.pokemonapp.data.remote.PokemonDataSource
@@ -73,8 +72,14 @@ class MainFragment : Fragment() {
         binding.pokemonName.text = formatPokemonName(pokemon.name)
         Glide.with(requireContext()).load(pokemon.sprites?.other?.home?.frontDefault)
             .into(binding.pokemonImage)
+        onEventDetailFragment(pokemon)
+
+    }
+
+    private fun onEventDetailFragment(pokemon: Pokemon) {
         binding.moreInfo.setOnClickListener {
-            findNavController().navigate(R.id.action_mainFragment_to_detailFragment)
+            val action = MainFragmentDirections.actionMainFragmentToDetailFragment(pokemon)
+            findNavController().navigate(action)
         }
     }
 
