@@ -1,4 +1,4 @@
-package com.jeanbernuy.pokemonapp.presentation
+package com.jeanbernuy.pokemonapp.presentation.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,22 +12,20 @@ import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.jeanbernuy.pokemonapp.core.Resource
 import com.jeanbernuy.pokemonapp.data.model.Pokemon
-import com.jeanbernuy.pokemonapp.data.remote.PokemonDataSource
-import com.jeanbernuy.pokemonapp.data.repository.PokemonDataRepository
 import com.jeanbernuy.pokemonapp.databinding.FragmentMainBinding
 import com.jeanbernuy.pokemonapp.formatPokemonName
 import com.jeanbernuy.pokemonapp.presentation.viewmodels.PokemonViewModel
-import com.jeanbernuy.pokemonapp.presentation.viewmodels.VMFactory
+import dagger.hilt.android.AndroidEntryPoint
 
 /**
  * A simple [MainFragment]
  * created by: Jean Bernuy
  */
+
+@AndroidEntryPoint
 class MainFragment : Fragment() {
 
-    private val viewModel by viewModels<PokemonViewModel> {
-        VMFactory(PokemonDataRepository(PokemonDataSource()))
-    }
+    private val viewModel: PokemonViewModel by viewModels()
 
     private var _binding: FragmentMainBinding? = null
     private val binding get() = _binding!!
@@ -72,15 +70,14 @@ class MainFragment : Fragment() {
         binding.pokemonName.text = formatPokemonName(pokemon.name)
         Glide.with(requireContext()).load(pokemon.sprites?.other?.home?.frontDefault)
             .into(binding.pokemonImage)
-        onEventDetailFragment(pokemon)
-
+        binding.moreInfo.setOnClickListener {
+            navigateToDetailFragment(pokemon)
+        }
     }
 
-    private fun onEventDetailFragment(pokemon: Pokemon) {
-        binding.moreInfo.setOnClickListener {
-            val action = MainFragmentDirections.actionMainFragmentToDetailFragment(pokemon)
-            findNavController().navigate(action)
-        }
+    private fun navigateToDetailFragment(pokemon: Pokemon) {
+        val action = MainFragmentDirections.actionMainFragmentToDetailFragment(pokemon)
+        findNavController().navigate(action)
     }
 
     override fun onDestroy() {

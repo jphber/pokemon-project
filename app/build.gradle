@@ -3,6 +3,8 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-parcelize'
     id 'androidx.navigation.safeargs'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
 }
 
 android {
@@ -74,4 +76,12 @@ dependencies {
 
     //CircleImageView
     implementation 'de.hdodenhof:circleimageview:3.1.0'
+
+    //Hilt
+    implementation 'com.google.dagger:hilt-android:2.43.2'
+    kapt 'com.google.dagger:hilt-compiler:2.43.2'
+}
+
+kapt {
+    correctErrorTypes true
 }

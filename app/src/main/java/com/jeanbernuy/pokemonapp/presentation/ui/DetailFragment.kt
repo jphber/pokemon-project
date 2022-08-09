@@ -1,4 +1,4 @@
-package com.jeanbernuy.pokemonapp.presentation
+package com.jeanbernuy.pokemonapp.presentation.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,12 +8,15 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.jeanbernuy.pokemonapp.databinding.FragmentDetailBinding
+import dagger.hilt.android.AndroidEntryPoint
 
 
 /**
  * A simple [DetailFragment]
  *
  */
+
+@AndroidEntryPoint
 class DetailFragment : Fragment() {
 
     private val args: DetailFragmentArgs by navArgs()
